@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar:BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (value){
+
           setState(() {
              currentIndex = value;
           });

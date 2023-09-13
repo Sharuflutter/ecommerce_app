@@ -14,10 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+     // title: 'E-Commerce Shop',
       theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorSchemeSeed: Colors.red  ,
+       // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Colors.grey.shade100,
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -45,8 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        backgroundColor: Colors.red,
-        title: Text("E-Commerce Shop"),
+        //backgroundColor: Colors.red,
+
+        title: Text("E-Commerce Shop",style: TextStyle(fontWeight: FontWeight.bold),),
+
         centerTitle: true,
       ),
 

@@ -1,7 +1,11 @@
+import 'package:ecommerce_heyflutter/pages/cart_details/cart_details.dart';
 import 'package:ecommerce_heyflutter/pages/favorite_screen/favorite_screen.dart';
 import 'package:ecommerce_heyflutter/pages/home_screen/home_screen.dart';
 import 'package:ecommerce_heyflutter/pages/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/favorite_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,16 +17,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-     // title: 'E-Commerce Shop',
-      theme: ThemeData(
-        colorSchemeSeed: Colors.red  ,
-       // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        scaffoldBackgroundColor: Colors.grey.shade100,
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=> FavoriteProvider()
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+       // title: 'E-Commerce Shop',
+        theme: ThemeData(
+          colorSchemeSeed: Colors.red  ,
+         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          scaffoldBackgroundColor: Colors.grey.shade100,
+          useMaterial3: true,
+        ),
+        home: const MyHomePage(),
       ),
-      home: const MyHomePage(),
     );
   }
 }
@@ -47,11 +57,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        //backgroundColor: Colors.red,
+        backgroundColor: Colors.red,
 
         title: Text("E-Commerce Shop",style: TextStyle(fontWeight: FontWeight.bold),),
 
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: (){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                        builder:(context)=> CartDetails()
+                    )
+                );
+              },
+              icon: Icon(Icons.add_shopping_cart),
+          )
+        ],
       ),
 
       bottomNavigationBar:BottomNavigationBar(
